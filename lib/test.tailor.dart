@@ -10,17 +10,17 @@ part of 'test.dart';
 // **************************************************************************
 
 mixin _$TestThemeTailorMixin on ThemeExtension<TestTheme> {
-  InvalidType get someColor;
+  Color? get someColor;
 
   @override
-  TestTheme copyWith({InvalidType? someColor}) {
+  TestTheme copyWith({Color? someColor}) {
     return TestTheme(someColor: someColor ?? this.someColor);
   }
 
   @override
   TestTheme lerp(covariant ThemeExtension<TestTheme>? other, double t) {
     if (other is! TestTheme) return this as TestTheme;
-    return TestTheme(someColor: t < 0.5 ? someColor : other.someColor);
+    return TestTheme(someColor: Color.lerp(someColor, other.someColor, t));
   }
 
   @override
@@ -42,5 +42,5 @@ mixin _$TestThemeTailorMixin on ThemeExtension<TestTheme> {
 
 extension TestThemeBuildContextProps on BuildContext {
   TestTheme get testTheme => Theme.of(this).extension<TestTheme>()!;
-  InvalidType get someColor => testTheme.someColor;
+  Color? get someColor => testTheme.someColor;
 }
